@@ -17,9 +17,12 @@ use App\Http\Controllers\WelcomeController;
 // va chercher la class Welcome Controller et lance la fonction index()
 Route::get('/', [WelcomeController::class, 'index']);
 
-use App\Http\Controllers\ExpensesController;
-Route::get('/expenses', [ExpensesController::class, 'display']);
+use App\Http\Controllers\AmountsController;
+Route::get('/expenses', [AmountsController::class, 'display'])->name('amount.create');
+Route::post('/expenses', [AmountsController::class, 'store'])->name('amount.store');
 
+
+// TEST
 use App\Http\Controllers\UsersController;
 Route::get('/users', [UsersController::class, 'create']);
 Route::post('/users', [UsersController::class, 'store']);
@@ -27,6 +30,10 @@ Route::post('/users', [UsersController::class, 'store']);
 use App\Http\Controllers\ContactController;
 Route::get('/contact', [ContactController::class, 'create']);
 Route::post('/contact', [ContactController::class, 'store']);
+
+use App\Http\Controllers\ContactsController;
+Route::get('/contacts', [ContactsController::class, 'create'])->name('contacts.create'); 
+Route::post('/contacts', [ContactsController::class, 'store'])->name('contacts.store'); 
 /* Route::get('/', function () {
     return view('homepage');
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
+use App\Http\Repositories\NameRepository;
  
 class UsersController extends Controller
 {
@@ -11,8 +12,11 @@ class UsersController extends Controller
         return view('infos');
     }
  
-    public function store(Request $request)
-    {
-        return 'Name is ' . $request->input('name');
+    public function store(Request $request, NameRepository $nameRepository)
+    {   
+        
+        $nameRepository->getName();
+        $nameRepository->shout();
+        
     }
 }

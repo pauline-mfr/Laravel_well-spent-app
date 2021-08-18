@@ -43,7 +43,7 @@
     <h1>Cover your page.</h1>
     <p class="lead">@yield('content')</p>
     <p class="lead">
-      <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
+      <a href="@yield('btn-link')" class="btn btn-lg fw-bold border-white bg-white">@yield('button')</a>
     </p>
   </main>
 
