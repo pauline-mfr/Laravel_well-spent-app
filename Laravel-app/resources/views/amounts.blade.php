@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('title')
-Expenses
+Amounts
 @endsection 
 
 @section('content')

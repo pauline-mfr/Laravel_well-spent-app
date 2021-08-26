@@ -18,8 +18,8 @@ use App\Http\Controllers\WelcomeController;
 Route::get('/', [WelcomeController::class, 'index']);
 
 use App\Http\Controllers\AmountsController;
-Route::get('/expenses', [AmountsController::class, 'display'])->name('amount.create');
-Route::post('/expenses', [AmountsController::class, 'store'])->name('amount.store');
+Route::get('/amounts', [AmountsController::class, 'display'])->name('amount.create');
+Route::post('/amounts', [AmountsController::class, 'store'])->name('amount.store');
 
 
 // TEST
@@ -46,3 +46,6 @@ Route::get('/expenses', function () {
     return view('expenses');
 }); */
 
+// Routes pour CRUD Movies
+use App\Http\Controllers\MoviesController;
+Route::resource('movies', MoviesController::class);

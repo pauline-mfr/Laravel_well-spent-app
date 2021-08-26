@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use  App\Models\Movies;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,12 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::create(
+        Movies::factory(10)->create();
+    
+      /*   \App\Models\User::create(
             [
                 'name' => 'Dupont',
                 'email' => 'dupont@la.fr',
                 'password' => bcrypt('pass'),
             ]
-        );
+        ); */
     }
 }
+ 

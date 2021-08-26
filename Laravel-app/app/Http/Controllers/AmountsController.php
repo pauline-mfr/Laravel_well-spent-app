@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class AmountsController extends Controller
 {
     public function display() {
-        return view('expenses');
+        return view('amounts');
     }
 
     public function store(Request $request) {
