@@ -1,6 +1,3 @@
-<?php// require("controller.php");
- ?>
-
 <!-- HTML -->
 <!DOCTYPE html>
 <html lang="en">
@@ -111,28 +108,7 @@
       <th scope="col">Actions</th>
     </tr>
   </thead>
-  <tbody>
-<?php 
-  /* $line = 0;
-  $datas = $manager->getIncomes(); //repris de Victorya
-foreach($datas as $data) {
-  $line ++;
-  echo '
-  <form action="homepage.php" method="POST">
-    <tr>
-      <th scope="row">'.$line.'</th>
-      <td>'.$data['formated_date'].'</td>
-      <td>'.$data['title'].'</td>
-      <td>'. $data['amount'].' €</td>
-      <td>'. $data['category'].'</td>
-      <td>
-        <button class="btn btn-light" type="submit" name="delete" value="'.$data['id'].'"><i class="far fa-trash-alt"></i></button>
-      </td>
-    </tr>
-    </form>
-    ';} */
-    ?>
-</tbody>
+
 </table>
 </div>
 

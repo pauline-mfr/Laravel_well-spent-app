@@ -18,7 +18,6 @@
         <div class="card">
         <header class="card-header">
             <p class="card-header-title">Movies</p>
-            <a class="button is-info" href="{{ route('movies.create') }}">Add a movie</a>
         </header>
         <div class="card-content">
             <div class="content">

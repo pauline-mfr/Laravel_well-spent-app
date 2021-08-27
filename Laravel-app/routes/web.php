@@ -17,11 +17,6 @@ use App\Http\Controllers\WelcomeController;
 // va chercher la class Welcome Controller et lance la fonction index()
 Route::get('/', [WelcomeController::class, 'index']);
 
-use App\Http\Controllers\AmountsController;
-Route::get('/amounts', [AmountsController::class, 'display'])->name('amount.create');
-Route::post('/amounts', [AmountsController::class, 'store'])->name('amount.store');
-
-
 // TEST
 use App\Http\Controllers\UsersController;
 Route::get('/users', [UsersController::class, 'create']);
@@ -49,3 +44,6 @@ Route::get('/expenses', function () {
 // Routes pour CRUD Movies
 use App\Http\Controllers\MoviesController;
 Route::resource('movies', MoviesController::class);
+
+use App\Http\Controllers\ExpenseController;
+Route::resource('expenses', ExpenseController::class);

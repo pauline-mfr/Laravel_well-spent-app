@@ -27,7 +27,7 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -38,7 +38,17 @@ class MoviesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Movies::create($request->all());
+        return redirect()->route('movies.index')->with('alert', 'New movie has been registered');
+
+      /*  $movie = new \App\Models\Movies; // create new model instance
+        //get properties
+        $movie->title = $request->title;
+        $movie->year = $request->year;
+        $movie->description= $request->description;
+        //$expense->category = $request->category;
+        $movie->save(); // DB register  */
+
     }
 
     /**
@@ -58,9 +68,9 @@ class MoviesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Movies $movie)
     {
-        //
+        return view('edit', compact('movie'));
     }
 
     /**
@@ -70,9 +80,11 @@ class MoviesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Movies $movie)
     {
-        //
+        $movie->update($request->all());
+
+        return redirect()->route('movies.index')->with('alert', 'Movie has been modified.');
     }
 
     /**
