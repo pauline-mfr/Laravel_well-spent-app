@@ -26,7 +26,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('new-expense');
     }
 
     /**
@@ -35,9 +35,11 @@ class ExpenseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ExpenseRequest $expenseRequest)
+    public function store(Request $request)
     {
-        Expense::create($expenseRequest->all());
+        Expense::create($request->all());
+
+        return redirect()->route('expenses.index')->with('user-alert', 'New expense added');
         
     }
 
@@ -58,9 +60,9 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Expense $expense)
     {
-        //
+        return view('edit-expense', compact('expense'));
     }
 
     /**
@@ -70,9 +72,11 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Expense $expense)
     {
-        //
+        $expense->update($request->all());
+
+        return redirect()->route('expenses.index')->with('user-alert', 'Well modified');
     }
 
     /**

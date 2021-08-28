@@ -42,6 +42,7 @@
       <td>{{ $expense->amount }} €</td>
       <td>{{ $expense->category }}</td>
       <td>
+      <a class="btn btn-light" href="{{ route('expenses.edit', $expense->id) }}"><i class="fas fa-edit"></i></a>
         <form action=" {{ route('expenses.destroy', $expense->id) }} " method="post">
           @csrf
           @method('DELETE')
@@ -53,6 +54,7 @@
 </tbody>
 
 </table>
+<a class="btn btn-primary" href="{{ route('expenses.create') }}">+</a>
 </div>
 </main>
     
