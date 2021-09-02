@@ -35,8 +35,16 @@
     <input type="text" step="any" name="title" class="form-control" >
     <label for="amount" class="form-label text-primary">Amount </label>
     <input type="number" step="any" name="amount" class="form-control"><br>
-    <label for="category" class="form-label text-primary">New category</label>
-    <input type="text" step="any" name="category" class="form-control"><br>
+    <label for="new_category" class="form-label text-primary">New category</label>
+    <input type="text" step="any" name="new_category" class="form-control"><br>
+
+    <!-- TEST SELECT -->
+    <select class="form-select" aria-label="Default select example" name="category">
+      <option selected>Select a category</option>
+    @foreach ($categories as $category)
+       <option value="{{ $category->category }}">{{ $category->category }}</option>
+    @endforeach 
+    </select>
 
   </div>
   <div class="mb-3">

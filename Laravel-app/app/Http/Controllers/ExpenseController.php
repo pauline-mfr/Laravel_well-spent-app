@@ -16,7 +16,11 @@ class ExpenseController extends Controller
     {
         $line = 1;
         $expenses = Expense::all();
-        return view('expenses', compact('expenses', 'line'));
+        $total_ex = Expense::sum('amount');
+        $sum_categories = $expenses
+        ->groupBy("category");
+        
+        return view('expenses', compact('expenses', 'line', 'total_ex', 'sum_categories'));
     }
 
     /**
@@ -26,7 +30,10 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        return view('new-expense');
+        $categories = Expense::select("category")
+        ->groupBy("category")
+        ->get();
+        return view('new-expense', compact('categories'));
     }
 
     /**
@@ -36,8 +43,20 @@ class ExpenseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        Expense::create($request->all());
+    {   
+        $expense = new \App\Models\Expense; //create new model instance
+          // get properties
+         $expense->date = $request->date; 
+         $expense->title = $request->title; 
+         $expense->amount = $request->amount; 
+         if($request->has('new_category') && !empty($request->new_category)) {
+            $expense->category = $request->new_category;
+        } elseif($request->has('category')) {
+            $expense->category = $request->category;
+        }
+         $expense->save(); // DB register      
+
+        //Expense::create($request->all()); (enregistre en une seule ligne mais pb category)
 
         return redirect()->route('expenses.index')->with('user-alert', 'New expense added');
         

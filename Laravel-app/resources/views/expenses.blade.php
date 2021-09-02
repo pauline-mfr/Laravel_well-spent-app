@@ -20,8 +20,15 @@
 </div>
 @endif
   <!-- EXPENSES TABLE    -->
-  <div class="px-5">
-<h2>Expenses</h2>
+  <div class="container-fluid px-5">
+  <div class="row">
+    <div class="col-11">
+      <h2>Expenses</h2>
+    </div>
+    <div class="col-1">
+      <a class="btn btn-outline-primary btn-sm fs-3" href="{{ route('expenses.create') }}">+</a>
+    </div>
+</div>
 <table class="table table-light table-striped">
   <thead>
     <tr>
@@ -42,20 +49,38 @@
       <td>{{ $expense->amount }} €</td>
       <td>{{ $expense->category }}</td>
       <td>
-      <a class="btn btn-light" href="{{ route('expenses.edit', $expense->id) }}"><i class="fas fa-edit"></i></a>
+      <a class="btn" href="{{ route('expenses.edit', $expense->id) }}"><i class="fas fa-edit"></i></a>
         <form action=" {{ route('expenses.destroy', $expense->id) }} " method="post">
           @csrf
           @method('DELETE')
-          <button class="btn btn-light" type="submit"><i class="far fa-trash-alt"></i></button>
+          <button class="btn" type="submit"><i class="far fa-trash-alt"></i></button>
         </form>
       </td>
     </tr>
     @endforeach
-</tbody>
+  </tbody>  
+</table>  
 
-</table>
-<a class="btn btn-primary" href="{{ route('expenses.create') }}">+</a>
+<!-- TOTAL EXPENSES -->
+<p class="btn btn-light pl-4">Total : {{ $total_ex }} €</p>
+
+<!-- CATEGORIES -->
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col">
+      <h2>Categories</h2>
+    </div>
 </div>
+
+
+    <div class="row">
+    @foreach ($sum_categories as $sum_cat)
+        <p>{{$sum_cat->sum('amount')}} €</p>
+  
+    @endforeach  
+
+</div>
+
 </main>
     
 </body>
