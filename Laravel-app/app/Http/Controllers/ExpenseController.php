@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Expense;
-
+use Illuminate\Support\Facades\DB; 
 use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
@@ -17,17 +17,20 @@ class ExpenseController extends Controller
         $line = 1;
         $expenses = Expense::all();
         $total_ex = Expense::sum('amount');
-        $sum_categories = $expenses
-        ->groupBy("category"); 
+        /* $sum_categories = $expenses
+        ->groupBy("category");  */
 
-      /*   $sum_categories = Expense::select([
+        $sum_categories = Expense::select([
             'category',
-            DB::raw('SUM(category) AS category_sum')
-          ])
+            DB::raw('SUM(amount) AS total_cat') ])
             ->groupBy('category')
             ->orderBy('total_cat', 'desc')
-            ->get(); */
+            ->get(); 
 
+        foreach($sum_categories as $cat) {
+            if($cat->category == NULL) {
+                $cat->category = 'uncategorised';}
+        }        
         
         return view('expenses', compact('expenses', 'line', 'total_ex', 'sum_categories'));
     }

@@ -41,21 +41,6 @@
   </div>
  </div>
 
-    
-
-<!-- TOTAL CATEGORIES  -->
-<div class="my-5">
-<h2 class="px-5">Categories</h2>
-<ul class="list-group list-group-flush">
-<?php
-/* $sum_cat = $manager->sumCategories(); 
-foreach($sum_cat as $cat) {
-  if($cat['category'] == NULL) {
-    $cat['category'] = 'Uncategorised';
-  } echo("<ul><li class='list-group-item'>Total ".$cat['category'] . " = ". $cat['total_cat']." € <br></li></ul>");
-}; */
-?>
-</div>
 
 </main>
 
