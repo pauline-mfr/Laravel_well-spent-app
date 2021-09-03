@@ -15,12 +15,13 @@
 </svg>
 <main>
 
-<!-- EXPENSES FORM -->
-<div class="expenses-form mx-auto w-50">
+<!-- Incomes FORM -->
+<div class="mx-auto w-50">
 <h2>Add</h2>
-    <form action="{{ route('expenses.store') }}" method="POST">
+    <form action="{{ route('incomes.store') }}" method="POST">
         @csrf
   <div class="mb-3">
+    <input type="hidden" name="is_income" value="1">
     <label for="date" class="form-label text-primary">Date </label>
     <input type="date" step="any" name="date" class="form-control" >
     <label for="title" class="form-label text-primary">Title </label>
@@ -31,12 +32,7 @@
     <input type="text" step="any" name="new_category" class="form-control"><br>
 
     <!-- TEST SELECT -->
-    <select class="form-select" aria-label="Default select example" name="category">
-      <option selected>Select a category</option>
-    @foreach ($categories as $category)
-       <option value="{{ $category->category }}">{{ $category->category }}</option>
-    @endforeach 
-    </select>
+ 
 
   </div>
   <div class="mb-3">

@@ -21,14 +21,6 @@
     <form action="{{ route('expenses.update', $expense->id) }}" method="POST">
         @csrf
         @method('put')
-    <div class="form-check mr-2">
-  <input class="form-check-input" type="radio" value="income" name="amount_type">
-  <label class="form-check-label">Income</label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" value="expense" name="amount_type">
-  <label class="form-check-label" >Expense</label>
-</div>
   <div class="mb-3">
     <label for="date" class="form-label text-primary">Date </label>
     <input type="date" step="any" name="date" class="form-control" value="{{ old('date', $expense->date) }}" >

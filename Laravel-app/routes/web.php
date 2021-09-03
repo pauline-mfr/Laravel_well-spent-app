@@ -47,3 +47,6 @@ Route::resource('movies', MoviesController::class);
 
 use App\Http\Controllers\ExpenseController;
 Route::resource('expenses', ExpenseController::class);
+
+use App\Http\Controllers\IncomeController;
+Route::resource('incomes', IncomeController::class);

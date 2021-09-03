@@ -23,10 +23,10 @@
   <div class="container-fluid px-5">
   <div class="row">
     <div class="col-11">
-      <h2>Expenses</h2>
+      <h2>Incomes</h2>
     </div>
     <div class="col-1">
-      <a class="btn btn-outline-primary btn-sm fs-3" href="{{ route('expenses.create') }}">+</a>
+      <a class="btn btn-outline-primary btn-sm fs-3" href="{{ route('incomes.create') }}">+</a>
     </div>
 </div>
 <table class="table table-light table-striped">
@@ -41,16 +41,16 @@
     </tr>
   </thead>
   <tbody>
-    @foreach($expenses as $expense)
+  @foreach($incomes as $income)
     <tr>
       <th scope="row">{{ $line ++ }}</th>
-      <td>{{ $expense->date }}</td>
-      <td>{{ $expense->title }}</td>
-      <td>{{ $expense->amount }} €</td>
-      <td>{{ $expense->category }}</td>
+      <td>{{ $income->date }}</td>
+      <td>{{ $income->title }}</td>
+      <td>{{ $income->amount }} €</td>
+      <td>{{ $income->category }}</td>
       <td>
-      <a class="btn" href="{{ route('expenses.edit', $expense->id) }}"><i class="fas fa-edit"></i></a>
-        <form action=" {{ route('expenses.destroy', $expense->id) }} " method="post">
+      <a class="btn" href="{{ route('incomes.edit', $income->id) }}"><i class="fas fa-edit"></i></a>
+        <form action=" {{ route('incomes.destroy', $income->id) }} " method="post">
           @csrf
           @method('DELETE')
           <button class="btn" type="submit"><i class="far fa-trash-alt"></i></button>
@@ -61,25 +61,9 @@
   </tbody>  
 </table>  
 
-<!-- TOTAL EXPENSES -->
-<p class="btn btn-light pl-4">Total : {{ $total_ex }} €</p>
+<!-- TOTAL INCOMES -->
+<p class="btn btn-light pl-4">{{ $total_in }} €</p>
 
-<!-- CATEGORIES -->
-<div class="container-fluid mt-4">
-  <div class="row">
-    <div class="col">
-      <h2>Categories</h2>
-    </div>
-</div>
-
-
-    <div class="row">
-    @foreach ($sum_categories as $sum_cat)
-    <p>{{$sum_cat->sum('amount')}} €</p>
-  
-    @endforeach  
-
-</div>
 
 </main>
     

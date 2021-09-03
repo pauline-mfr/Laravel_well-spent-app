@@ -18,7 +18,16 @@ class ExpenseController extends Controller
         $expenses = Expense::all();
         $total_ex = Expense::sum('amount');
         $sum_categories = $expenses
-        ->groupBy("category");
+        ->groupBy("category"); 
+
+      /*   $sum_categories = Expense::select([
+            'category',
+            DB::raw('SUM(category) AS category_sum')
+          ])
+            ->groupBy('category')
+            ->orderBy('total_cat', 'desc')
+            ->get(); */
+
         
         return view('expenses', compact('expenses', 'line', 'total_ex', 'sum_categories'));
     }
@@ -58,7 +67,9 @@ class ExpenseController extends Controller
 
         //Expense::create($request->all()); (enregistre en une seule ligne mais pb category)
 
-        return redirect()->route('expenses.index')->with('user-alert', 'New expense added');
+        
+            return redirect()->route('expenses.index')->with('user-alert', 'New income added');
+            
         
     }
 

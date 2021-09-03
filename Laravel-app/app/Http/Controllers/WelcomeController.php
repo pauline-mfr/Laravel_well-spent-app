@@ -9,7 +9,9 @@ class WelcomeController extends Controller
 {
     public function index() {
 
+        $total_in = Expense::where('is_income', 1)->sum('amount');
         $total_ex = Expense::sum('amount');
-        return view('homepage', compact('total_ex'));
+        $balance = $total_in - $total_ex;
+        return view('homepage', compact('total_in', 'total_ex', 'balance'));
     }
 }

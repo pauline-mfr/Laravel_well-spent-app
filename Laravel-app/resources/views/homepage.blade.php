@@ -23,8 +23,10 @@
     <div class="container text-light" style="width: 80%; height: 250px; border-radius: 21px 21px 0 0; background-color: #7B68ee">
   <div class="row align-items-center mx-auto text-center pt-4">
     <div class="col">
+    <a class="text-light text-decoration-none" href="{{ route('incomes.index') }}">
     <p class="display-6">Incomes</p><br>
-    <p class="display-6"><?//= $total_in?> €</p>
+    <p class="display-6">{{ $total_in }} €</p>
+  </a>
     </div>
     <div class="col">
       <a class="text-light text-decoration-none" href="{{ route('expenses.index') }}">
@@ -34,7 +36,7 @@
     </div>
     <div class="col">
     <p class="display-6">Balance</p><br>
-    <p class="display-6"><?//= $balance?> €</p>
+    <p class="display-6">{{ $balance }} €</p>
     </div>
   </div>
  </div>
