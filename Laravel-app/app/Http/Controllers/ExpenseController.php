@@ -15,14 +15,15 @@ class ExpenseController extends Controller
     public function index()
     {
         $line = 1;
-        $expenses = Expense::all();
-        $total_ex = Expense::sum('amount');
+        $expenses = Expense::all()->where('is_income', 0);
+        $total_ex = Expense::where('is_income', 0)->sum('amount');
         /* $sum_categories = $expenses
         ->groupBy("category");  */
 
         $sum_categories = Expense::select([
             'category',
             DB::raw('SUM(amount) AS total_cat') ])
+            ->where('is_income', 0)
             ->groupBy('category')
             ->orderBy('total_cat', 'desc')
             ->get(); 
