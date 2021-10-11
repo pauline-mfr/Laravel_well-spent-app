@@ -14,12 +14,34 @@ class ExpenseController extends Controller
      */
     public function index()
     {
+        // DISPLAY
         $line = 1;
         $expenses = Expense::all()->where('is_income', 0);
-        $total_ex = Expense::where('is_income', 0)->sum('amount');
-        /* $sum_categories = $expenses
-        ->groupBy("category");  */
 
+        
+
+        //DATE_FORMAT(`date`, '%d-%m-%Y')
+        //DB::raw('DATE_FORMAT(account.terminationdate,"%Y-%m-%d") as accountterminationdate')
+          
+
+        //TEST SELECT CAT
+        /* $query = $chosen_cat ? Expense::where('category', $chosen_cat) : Expense::query();
+        $expenses = $query->oldest('title')->paginate(100); */
+        
+        /* 
+        $query = $slug ? Category::whereSlug($slug)->firstOrFail()->films() : Film::query();
+    $films = $query->withTrashed()->oldest('title')->paginate(5);
+    */
+
+       
+        $categories = Expense::select("category")
+        ->groupBy("category")
+        ->get();
+        
+        // TOTAL TAB
+        $total_ex = Expense::where('is_income', 0)->sum('amount');
+        
+        //SUM CATEGORIES
         $sum_categories = Expense::select([
             'category',
             DB::raw('SUM(amount) AS total_cat') ])
@@ -33,7 +55,7 @@ class ExpenseController extends Controller
                 $cat->category = 'uncategorised';}
         }        
         
-        return view('expenses', compact('expenses', 'line', 'total_ex', 'sum_categories'));
+        return view('expenses', compact('expenses', 'line', 'total_ex', 'sum_categories', 'categories'));
     }
 
     /**
@@ -124,4 +146,33 @@ class ExpenseController extends Controller
         $expense->delete();
         return back()->with('user-alert', 'Expense deleted !');
     }
+
+    public function showCat($selected) {
+        echo($selected);
+    }
+     //TEST SELECT CAT
+        /* $query = $chosen_cat ? Expense::where('category', $chosen_cat) : Expense::query();
+        $expenses = $query->oldest('title')->paginate(100); */
+        
+        /* 
+        $query = $slug ? Category::whereSlug($slug)->firstOrFail()->films() : Film::query();
+    $films = $query->withTrashed()->oldest('title')->paginate(5);
+    */
+
+    public function showMonth(Request $request)
+    {
+        $line = 1;
+
+        $selected_month = $request->selected_month; //récup le mois sélectioné 
+        $month_expenses = DB::table('expenses')
+            ->where('is_income', 0)
+            ->whereMonth('date', $selected_month)
+            ->get();   
+           
+       
+        
+        return view('view-month', compact('line', 'month_expenses', 'selected_month'));
+    }
 }
+
+

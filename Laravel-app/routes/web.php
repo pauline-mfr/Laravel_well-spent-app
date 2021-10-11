@@ -20,6 +20,11 @@ Route::get('/', [WelcomeController::class, 'index']);
 // Routes pour CRUD 
 use App\Http\Controllers\ExpenseController;
 Route::resource('expenses', ExpenseController::class);
+// ROUTE VIEW MONTH
+Route::get('view-month', [ExpenseController::class, 'showMonth'])->name('expenses.month');
 
 use App\Http\Controllers\IncomeController;
 Route::resource('incomes', IncomeController::class);
+
+// Route categories
+Route::get('expenses-test', [ExpenseController::class, 'showCat'])->name('expenses.category');

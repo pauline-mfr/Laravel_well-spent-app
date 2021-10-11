@@ -1,12 +1,9 @@
 @extends('template-bank')
 
 @section('title')
-Incomes
+View Month
 @endsection
- 
-@section('btn-add')
-<a class="btn btn-outline-primary btn-sm fs-3" href="{{ route('incomes.create') }}">+</a>
-@endsection
+
 
 @section('table')
 <thead>
@@ -20,16 +17,16 @@ Incomes
     </tr>
   </thead>
   <tbody>
-  @foreach($incomes as $income)
+    @foreach($month_expenses as $expense)
     <tr>
       <th scope="row">{{ $line ++ }}</th>
-      <td>{{ date('d-m-Y', strtotime($income->date)) }}</td>
-      <td>{{ $income->title }}</td>
-      <td>{{ $income->amount }} €</td>
-      <td>{{ $income->category }}</td>
+      <td>{{ date('d-m-Y', strtotime($expense->date)) }}</td>
+      <td>{{ $expense->title }}</td>
+      <td>{{ $expense->amount }} €</td>
+      <td>{{ $expense->category }}</td>
       <td>
-      <a class="btn" href="{{ route('incomes.edit', $income->id) }}"><i class="fas fa-edit"></i></a>
-        <form action=" {{ route('incomes.destroy', $income->id) }} " method="post">
+      <a class="btn" href="{{ route('expenses.edit', $expense->id) }}"><i class="fas fa-edit"></i></a>
+        <form action=" {{ route('expenses.destroy', $expense->id) }} " method="post">
           @csrf
           @method('DELETE')
           <button class="btn" type="submit"><i class="far fa-trash-alt"></i></button>
@@ -38,8 +35,11 @@ Incomes
     </tr>
     @endforeach
   </tbody>  
+  le mois choisi = {{  $selected_month }}<br>
 @endsection
 
 @section('total')
-<p class="btn btn-light pl-4">{{ $total_in }} €</p>
+@endsection
+
+@section('categories')
 @endsection

@@ -3,7 +3,24 @@
 @section('title')
 Expenses
 @endsection
- 
+
+@section('select')
+<div class="select">
+            <select onchange="window.location.href = this.value">
+                <option value="{{ route('expenses.index') }}" >All categories</option>
+                @foreach($categories as $category)
+      
+  <option value="{{ route('expenses.category', $category->category) }}" 
+    >
+
+
+                      {{ $category->category }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+@endsection
+
 @section('btn-add')
 <a class="btn btn-outline-primary btn-sm fs-3" href="{{ route('expenses.create') }}">+</a>
 @endsection
@@ -23,7 +40,10 @@ Expenses
     @foreach($expenses as $expense)
     <tr>
       <th scope="row">{{ $line ++ }}</th>
-      <td>{{ $expense->date }}</td>
+        
+        
+     
+      <td>{{ date('d-m-Y', strtotime($expense->date)) }}</td>
       <td>{{ $expense->title }}</td>
       <td>{{ $expense->amount }} €</td>
       <td>{{ $expense->category }}</td>

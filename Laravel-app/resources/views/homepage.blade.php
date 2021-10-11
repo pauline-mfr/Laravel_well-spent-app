@@ -41,6 +41,23 @@
   </div>
  </div>
 
+ <!-- TEST SELECT  -->
+ <div class="container text-light mt-4 mb-5" style="width: 80%; height: 70px; border-radius: 21px 21px 0 0; background-color: #7B68ee">
+ <p class="display-6">Check back</p>
+ <form action="{{ route('expenses.month') }}" method="GET">
+ <select class="form-select" aria-label="Default select example" name="selected_month">
+      <option selected>Select a month</option>
+    @foreach ($months as $month)
+   
+       <option value="{{ $month->month }}"> {{  $month->month }}</option>
+    @endforeach 
+    </select>
+    <div class="mb-3">
+    <input type="submit" value="Ok" name="submit" class="btn btn-primary">
+    </div>
+    <form>
+</div>
+
 
 </main>
 

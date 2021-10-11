@@ -23,8 +23,12 @@
 
   <div class="container-fluid px-5">
   <div class="row">
-    <div class="col-11">
+    <div class="col-8">
       <h2>@yield('title')</h2>
+    </div>
+    <div class="col-3">
+        @yield('select')
+    </div>
     </div>
     <div class="col-1">
         @yield('btn-add')
