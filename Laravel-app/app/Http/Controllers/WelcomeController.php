@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Expense;
 use Illuminate\Support\Facades\DB; 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class WelcomeController extends Controller
 {
@@ -14,16 +16,12 @@ class WelcomeController extends Controller
         $balance = $total_in - $total_ex;
 
         //TEST DATE
-        $months = Expense::select(            
-            DB::raw('MONTH(date) AS month') )
-            ->groupBy('month')
+        $recorded_months = Expense::selectRaw(            
+            'year(date) as year, monthname(date) as month') 
+            ->groupBy('year', 'month')
             ->get();
             
-
-            //DISPLAY MONTH NAME
            
-
-
-        return view('homepage', compact('total_in', 'total_ex', 'balance', 'months'));
+        return view('homepage', compact('total_in', 'total_ex', 'balance', 'recorded_months'));
     }
 }

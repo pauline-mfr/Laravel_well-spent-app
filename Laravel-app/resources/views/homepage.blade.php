@@ -47,9 +47,10 @@
  <form action="{{ route('expenses.month') }}" method="GET">
  <select class="form-select" aria-label="Default select example" name="selected_month">
       <option selected>Select a month</option>
-    @foreach ($months as $month)
-   
-       <option value="{{ $month->month }}"> {{  $month->month }}</option>
+    @foreach ($recorded_months as $recorded_month)
+    
+       <option value="{{ $recorded_month->month }}"> {{ $recorded_month->month }} {{ date('y', strtotime($recorded_month->year)) }}</option>
+       
     @endforeach 
     </select>
     <div class="mb-3">
@@ -57,6 +58,7 @@
     </div>
     <form>
 </div>
+
 
 
 </main>
