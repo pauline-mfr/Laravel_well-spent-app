@@ -17,11 +17,6 @@ class ExpenseController extends Controller
         // DISPLAY
         $line = 1;
         $expenses = Expense::all()->where('is_income', 0);
-
-        
-
-        //DATE_FORMAT(`date`, '%d-%m-%Y')
-        //DB::raw('DATE_FORMAT(account.terminationdate,"%Y-%m-%d") as accountterminationdate')
           
 
         //TEST SELECT CAT
@@ -161,17 +156,41 @@ class ExpenseController extends Controller
 
     public function showMonth(Request $request)
     {
-        $line = 1;
+        $line = 1;  
+        $selected_month_name = $request->selected_month;      
+        $selected_month = date('m', strtotime($request->selected_month)); //récup le mois sélectioné 
+        
+        $total_month_in = Expense::where('is_income', 1)->whereMonth('date', $selected_month)->sum('amount');
+        $total_month_ex = Expense::where('is_income', 0)->whereMonth('date', $selected_month)->sum('amount');
+        $month_balance = $total_month_in - $total_month_ex;
+        
+        $month_incomes = DB::table('expenses')
+        ->where('is_income', 1)
+        ->whereMonth('date', $selected_month)
+        ->get();  
 
-        $selected_month = $request->selected_month; //récup le mois sélectioné 
         $month_expenses = DB::table('expenses')
             ->where('is_income', 0)
             ->whereMonth('date', $selected_month)
-            ->get();   
+            ->get();  
+            
+        $sum_month_categories = Expense::select([
+                'category',
+                DB::raw('SUM(amount) AS total_cat') ])
+                ->where('is_income', 0)
+                ->whereMonth('date', $selected_month)
+                ->groupBy('category')
+                ->orderBy('total_cat', 'desc')
+                ->get(); 
+    
+            foreach($sum_month_categories as $cat) {
+                if($cat->category == NULL) {
+                    $cat->category = 'uncategorised';}
+            }        
+            
            
-       
         
-        return view('view-month', compact('line', 'month_expenses', 'selected_month'));
+        return view('view-month', compact('line', 'month_expenses', 'month_incomes', 'selected_month_name' ,'selected_month', 'total_month_in', 'total_month_ex', 'month_balance', 'sum_month_categories'));
     }
 }
 

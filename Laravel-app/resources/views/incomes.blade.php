@@ -8,7 +8,7 @@ Incomes
 <a class="btn btn-outline-primary btn-sm fs-3" href="{{ route('incomes.create') }}">+</a>
 @endsection
 
-@section('table')
+@section('income-table')
 <thead>
     <tr>
       <th scope="col">#</th>

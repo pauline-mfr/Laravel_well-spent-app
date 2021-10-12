@@ -49,7 +49,7 @@
       <option selected>Select a month</option>
     @foreach ($recorded_months as $recorded_month)
     
-       <option value="{{ $recorded_month->month }}"> {{ $recorded_month->month }} {{ date('y', strtotime($recorded_month->year)) }}</option>
+       <option value="{{ $recorded_month->month }} {{ date('y', strtotime($recorded_month->year)) }}"> {{ $recorded_month->month }} {{ date('y', strtotime($recorded_month->year)) }}</option>
        
     @endforeach 
     </select>
@@ -58,8 +58,6 @@
     </div>
     <form>
 </div>
-
-
 
 </main>
 

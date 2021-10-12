@@ -25,7 +25,7 @@ Expenses
 <a class="btn btn-outline-primary btn-sm fs-3" href="{{ route('expenses.create') }}">+</a>
 @endsection
 
-@section('table')
+@section('expense-table')
 <thead>
     <tr>
       <th scope="col">#</th>
@@ -40,9 +40,6 @@ Expenses
     @foreach($expenses as $expense)
     <tr>
       <th scope="row">{{ $line ++ }}</th>
-        
-        
-     
       <td>{{ date('d-m-Y', strtotime($expense->date)) }}</td>
       <td>{{ $expense->title }}</td>
       <td>{{ $expense->amount }} €</td>
@@ -73,10 +70,10 @@ Expenses
     </div>
 </div>
     <div class="row">
-    
+      <ul class="list-group list-group-flush">    
     @foreach ($sum_categories as $sum_cat)    
-      <p>Total {{ $sum_cat->category }} = {{ $sum_cat->total_cat }} €</p>  
+      <li class="list-group list-group-item">Total {{ $sum_cat->category }} = {{ $sum_cat->total_cat }} €</li>  
     @endforeach  
-
+</ul>
 </div>
 @endsection

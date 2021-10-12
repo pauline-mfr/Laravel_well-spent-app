@@ -19,8 +19,16 @@ class WelcomeController extends Controller
         $recorded_months = Expense::selectRaw(            
             'year(date) as year, monthname(date) as month') 
             ->groupBy('year', 'month')
+            ->orderBy('month', 'desc')
             ->get();
             
+            /*
+  $months = Expense::select(            
+            DB::raw('MONTH(date) AS month') )
+            ->groupBy('month')
+            ->get();
+
+*/
            
         return view('homepage', compact('total_in', 'total_ex', 'balance', 'recorded_months'));
     }

@@ -23,8 +23,8 @@
 
   <div class="container-fluid px-5">
   <div class="row">
-    <div class="col-8">
-      <h2>@yield('title')</h2>
+    <div class="col-8 pb-3">
+      <h2 class="display-6">@yield('title')</h2>
     </div>
     <div class="col-3">
         @yield('select')
@@ -35,17 +35,30 @@
     </div>
 </div>
 
-<!-- TABLE -->
-<table class="table table-light table-striped">
-    @yield('table')    
-</table>  
+@yield('amount-bloc')
 
-<!-- TOTAL -->
- @yield('total')
+<!-- TABLE -->
+<div class="px-5">
+<table class="table table-light table-striped my-5">
+    @yield('income-table')    
+</table>  
+</div>
+
+ 
+ <!-- TABLE -->
+ <div class="px-5">
+ <table class="table table-dark table-striped my-5">
+   @yield('expense-table')    
+  </table> 
+</div> 
+ 
+  
 
 
 <!-- CATEGORIES -->
+<div class="px-5">
 @yield('categories')
+</div>
 
 </main>
     
