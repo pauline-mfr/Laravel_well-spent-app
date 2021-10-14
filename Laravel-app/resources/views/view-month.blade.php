@@ -1,7 +1,10 @@
 @extends('template-bank')
 
 @section('title')
-{{ $selected_month_name }}
+{{ $short_date }}<br>
+
+
+
 @endsection
 
 @section('amount-bloc')

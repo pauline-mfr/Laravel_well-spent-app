@@ -46,18 +46,21 @@
  <p class="display-6">Check back</p>
  <form action="{{ route('expenses.month') }}" method="GET">
  <select class="form-select" aria-label="Default select example" name="selected_month">
+ 
       <option selected>Select a month</option>
     @foreach ($recorded_months as $recorded_month)
     
-       <option value="{{ $recorded_month->month }} {{ date('y', strtotime($recorded_month->year)) }}"> {{ $recorded_month->month }} {{ date('y', strtotime($recorded_month->year)) }}</option>
+       <option value="{{ $recorded_month->short_date }}"> {{ $recorded_month->short_date }} </option> 
        
-    @endforeach 
-    </select>
+       @endforeach 
+      </select>
+     
     <div class="mb-3">
     <input type="submit" value="Ok" name="submit" class="btn btn-primary">
     </div>
     <form>
 </div>
+
 
 </main>
 

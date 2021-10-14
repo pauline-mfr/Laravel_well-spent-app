@@ -16,7 +16,7 @@ class ExpenseController extends Controller
     {
         // DISPLAY
         $line = 1;
-        $expenses = Expense::all()->where('is_income', 0);
+        $expenses = Expense::where('is_income', 0)->orderBy('date', 'asc')->get();
           
 
         //TEST SELECT CAT
@@ -157,21 +157,26 @@ class ExpenseController extends Controller
     public function showMonth(Request $request)
     {
         $line = 1;  
-        $selected_month_name = $request->selected_month;      
-        $selected_month = date('m', strtotime($request->selected_month)); //récup le mois sélectioné 
+        $short_date = $request->selected_month;
+        $selected_month = date('m', strtotime($request->selected_month));  
+        $selected_year = date('Y', strtotime($request->selected_month));   
+       /*  $selected_month = date('m', strtotime($request->selected_month)); //récup le mois sélectioné (en chiffres) */
         
-        $total_month_in = Expense::where('is_income', 1)->whereMonth('date', $selected_month)->sum('amount');
-        $total_month_ex = Expense::where('is_income', 0)->whereMonth('date', $selected_month)->sum('amount');
+        
+        $total_month_in = Expense::where('is_income', 1)->whereMonth('date', $selected_month)->whereYear('date', $selected_year)->sum('amount');
+        $total_month_ex = Expense::where('is_income', 0)->whereMonth('date', $selected_month)->whereYear('date', $selected_year)->sum('amount');
         $month_balance = $total_month_in - $total_month_ex;
         
-        $month_incomes = DB::table('expenses')
-        ->where('is_income', 1)
+        $month_incomes = Expense::where('is_income', 1)
         ->whereMonth('date', $selected_month)
+        ->whereYear('date', $selected_year)
+        ->orderBy('date', 'asc')
         ->get();  
 
-        $month_expenses = DB::table('expenses')
-            ->where('is_income', 0)
+        $month_expenses = Expense::where('is_income', 0)
             ->whereMonth('date', $selected_month)
+            ->whereYear('date', $selected_year)
+            ->orderBy('date', 'asc')
             ->get();  
             
         $sum_month_categories = Expense::select([
@@ -179,6 +184,7 @@ class ExpenseController extends Controller
                 DB::raw('SUM(amount) AS total_cat') ])
                 ->where('is_income', 0)
                 ->whereMonth('date', $selected_month)
+                ->whereYear('date', $selected_year)
                 ->groupBy('category')
                 ->orderBy('total_cat', 'desc')
                 ->get(); 
@@ -190,7 +196,7 @@ class ExpenseController extends Controller
             
            
         
-        return view('view-month', compact('line', 'month_expenses', 'month_incomes', 'selected_month_name' ,'selected_month', 'total_month_in', 'total_month_ex', 'month_balance', 'sum_month_categories'));
+        return view('view-month', compact('line', 'month_expenses', 'month_incomes', 'selected_month', 'total_month_in', 'total_month_ex', 'month_balance', 'sum_month_categories', 'selected_year', 'short_date'));
     }
 }
 
