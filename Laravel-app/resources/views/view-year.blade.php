@@ -19,57 +19,46 @@
 <main>      
     
     <div class="text-center mb-5">    
-        <h2 class="display-6">This month</h2>      
+        <h2 class="display-6">This year</h2>      
     </div>  
 
     <div class="container text-light" style="width: 80%; height: 250px; border-radius: 21px 21px 0 0; background-color: #7B68ee">
   <div class="row align-items-center mx-auto text-center pt-4">
     <div class="col">
-    <a class="text-light text-decoration-none" href="{{ route('incomes.index') }}">
+    <a class="text-light text-decoration-none" href="">
     <p class="display-6">Incomes</p><br>
-    <p class="display-6">{{ $total_in }} €</p>
+    <p class="display-6">{{ $total_year_in }} €</p>
   </a>
     </div>
     <div class="col">
-      <a class="text-light text-decoration-none" href="{{ route('expenses.index') }}">
+      <a class="text-light text-decoration-none" href="">
         <p class="display-6">Expenses</p><br>
-        <p class="display-6">{{ $total_ex }} €</p>
+        <p class="display-6">{{ $total_year_ex }} €</p>
       </a>        
     </div>
+</div><br>
+<div class="row text-center">
     <div class="col">
-    <p class="display-6">Balance</p><br>
-    <p class="display-6">{{ $balance }} €</p>
+    <p class="display-6"><i class="fas fa-hand-holding-usd"></i> So far you have saved : {{ $year_balance }} €</p>
     </div>
   </div>
  </div>
 
- <!-- SELECT MONTH  -->
- <div class="container text-light mt-4 mb-5" style="width: 80%; height: 70px; border-radius: 21px 21px 0 0; background-color: #7B68ee">
- <p class="display-6">Check back</p> 
- <form action="{{ route('expenses.month') }}" method="GET">
-   <div class="row">
-     <div class="col-8">
- <select class="form-select" aria-label="Default select example" name="selected_month"> 
-      <option selected>Select a month</option>
-    @foreach ($recorded_months as $recorded_month)    
-       <option value="{{ $recorded_month->short_date }}"> {{ $recorded_month->short_date }} </option>        
-       @endforeach 
-      </select>   
-</div>
-      <div class="col-4">  
-    <div class="mb-3">
-    <input type="submit" value="Ok" name="submit" class="btn btn-light">
+ <!-- CATEGORIES -->
+ <div class="px-5">
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col">
+      <h2 class="display-6">Categories</h2>
     </div>
 </div>
+    <div class="row">
+    <ul class="list-group list-group-flush">    
+    @foreach ($sum_year_categories as $sum_year_cat)    
+      <li class="list-group list-group-item">Total {{ $sum_year_cat->category }} = {{ $sum_year_cat->total_year_cat }} €</li>  
+    @endforeach  
+</ul>
 </div>
-    <form>
-</div>
-
-<!-- LINK YEAR  -->
-<div class="container text-light mt-4 mb-5" style="width: 80%; height: 70px; border-radius: 21px 21px 0 0; background-color: #7B68ee">
-<a class="text-light text-decoration-none" href="{{ route('expenses.year') }}">
- <p class="display-6">Check year</p> 
-</a>
 </div>
 
 </main>

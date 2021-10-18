@@ -111,7 +111,7 @@
 <div class="container-fluid mt-4">
   <div class="row">
     <div class="col">
-      <h2>Categories</h2>
+      <h2 class="display-6">Categories</h2>
     </div>
 </div>
     <div class="row">
