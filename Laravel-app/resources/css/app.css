@@ -1,32 +1,5 @@
-/* HEADER */
+/* ICONS */
 
-.header-bloc {
-    margin-top: -150px;;
-}
+.fa-home {font-size: 2rem; color: #fff;}
 
-.bloc-expenses {
-    background-color: #fff;
-    width: 50%;
-}
-
-.header-right-part {
-    height: 80px;
-    width: 80px;
-    border-radius: 15%;
-    background-image: url("profil.jpg");
-    background-size: cover;
-    background-position: center; 
-}
-
-.header-left-part h2 {
-    font-size: 22px;
-}
-
-.account-balance {
-    font-size: 28px;
-}
-
-.bloc-expenses {
-    margin-top: -170px;
-    background-color: #7B68EE;
-}
+body {background-color: red;}

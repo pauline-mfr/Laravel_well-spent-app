@@ -15,16 +15,21 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\WelcomeController;
 // va chercher la class Welcome Controller et lance la fonction index()
-Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/', [WelcomeController::class, 'index'])->name('homepage');
 
 // Routes pour CRUD 
 use App\Http\Controllers\ExpenseController;
 Route::resource('expenses', ExpenseController::class);
-// ROUTE VIEW MONTH
-Route::get('view-month', [ExpenseController::class, 'showMonth'])->name('expenses.month');
 
 use App\Http\Controllers\IncomeController;
 Route::resource('incomes', IncomeController::class);
 
+// ROUTE VIEW MONTH
+use App\Http\Controllers\MonthController;
+Route::get('view-month', [MonthController::class, 'showMonth'])->name('expenses.month');
+
 // Route categories
-Route::get('expenses-test', [ExpenseController::class, 'showCat'])->name('expenses.category');
+Route::get('view-cat', [ExpenseController::class, 'showCat'])->name('expenses.category');
+
+
+/* Route::get('expenses-test', [ExpenseController::class, 'showCat'])->name('expenses.category'); */

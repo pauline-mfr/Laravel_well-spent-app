@@ -5,7 +5,7 @@ Expenses
 @endsection
 
 @section('select')
-<div class="select">
+<form class="form-select" name="selected_cat">
             <select onchange="window.location.href = this.value">
                 <option value="{{ route('expenses.index') }}" >All categories</option>
                 @foreach($categories as $category)
@@ -18,8 +18,12 @@ Expenses
                     </option>
                 @endforeach
             </select>
-        </div>
+</form>
 @endsection
+
+@if(isset($selected))
+<p>{{ $selected }}</p>
+@endif
 
 @section('btn-add')
 <a class="btn btn-outline-primary btn-sm fs-3" href="{{ route('expenses.create') }}">+</a>
@@ -45,12 +49,18 @@ Expenses
       <td>{{ $expense->amount }} €</td>
       <td>{{ $expense->category }}</td>
       <td>
-      <a class="btn" href="{{ route('expenses.edit', $expense->id) }}"><i class="fas fa-edit"></i></a>
+      <div class="row">
+<div class="col-2">
+  <a class="btn" href="{{ route('expenses.edit', $expense->id) }}"><i class="fas fa-edit text-light"></i></a>  
+</div>
+<div class="col-10">
         <form action=" {{ route('expenses.destroy', $expense->id) }} " method="post">
           @csrf
           @method('DELETE')
-          <button class="btn" type="submit"><i class="far fa-trash-alt"></i></button>
+          <button class="btn" type="submit"><i class="far fa-trash-alt text-light"></i></button>
         </form>
+</div>
+</div>
       </td>
     </tr>
     @endforeach

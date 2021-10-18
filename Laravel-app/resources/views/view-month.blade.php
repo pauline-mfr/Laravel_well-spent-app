@@ -51,12 +51,18 @@
       <td>{{ $income->amount }} €</td>
       <td>{{ $income->category }}</td>
       <td>
+        <div class="row">
+          <div class="col-2">
       <a class="btn" href="{{ route('incomes.edit', $income->id) }}"><i class="fas fa-edit"></i></a>
+</div>
+<div class="col-10">
         <form action=" {{ route('incomes.destroy', $income->id) }} " method="post">
           @csrf
           @method('DELETE')
           <button class="btn" type="submit"><i class="far fa-trash-alt"></i></button>
         </form>
+</div>
+</div>
       </td>
     </tr>
     @endforeach
@@ -83,12 +89,18 @@
       <td>{{ $expense->amount }} €</td>
       <td>{{ $expense->category }}</td>
       <td>
-      <a class="btn" href="{{ route('expenses.edit', $expense->id) }}"><i class="fas fa-edit"></i></a>
+      <div class="row">
+<div class="col-2">
+  <a class="btn" href="{{ route('expenses.edit', $expense->id) }}"><i class="fas fa-edit text-light"></i></a>  
+</div>
+<div class="col-10">
         <form action=" {{ route('expenses.destroy', $expense->id) }} " method="post">
           @csrf
           @method('DELETE')
-          <button class="btn" type="submit"><i class="far fa-trash-alt"></i></button>
+          <button class="btn" type="submit"><i class="far fa-trash-alt text-light"></i></button>
         </form>
+</div>
+</div>
       </td>
     </tr>
     @endforeach
