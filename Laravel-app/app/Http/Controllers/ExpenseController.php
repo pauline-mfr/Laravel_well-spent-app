@@ -100,7 +100,9 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+
+     //Used to show year category
+    public function show($category)
     {
         //
     }

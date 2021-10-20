@@ -32,6 +32,8 @@ Route::get('view-month', [MonthController::class, 'showMonth'])->name('expenses.
 use App\Http\Controllers\YearController;
 Route::get('view-year', [YearController::class, 'showYear'])->name('expenses.year');
 
+Route::get('expenses/year/{category}', [YearController::class, 'showYearCategory'])->name('year.cat');  
+
 
 // Route categories
 Route::get('view-cat', [ExpenseController::class, 'showCat'])->name('expenses.category');

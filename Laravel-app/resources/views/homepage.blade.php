@@ -14,9 +14,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
   <path fill="#7B68EE" fill-opacity="1" d="M0,288L80,261.3C160,235,320,181,480,154.7C640,128,800,128,960,128C1120,128,1280,128,1360,128L1440,128L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
 </svg>
-<!-- BTN HOME -->
-<a class="btn" href=" {{ route('homepage') }}"><i class="fas fa-home position-absolute top-0 end-0 text-light p-4 fs-2"></i></a>
-<main>      
+<main>     
     
     <div class="text-center mb-5">    
         <h2 class="display-6">This month</h2>      

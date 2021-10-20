@@ -15,7 +15,7 @@
   <path fill="#7B68EE" fill-opacity="1" d="M0,288L80,261.3C160,235,320,181,480,154.7C640,128,800,128,960,128C1120,128,1280,128,1360,128L1440,128L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
 </svg>
 <!-- BTN HOME -->
-<a class="btn" href=" {{ route('homepage') }}"><i class="fas fa-home position-absolute top-0 end-0 text-light p-4 fs-2"></i></a>
+<a class="btn" href=" {{ route('homepage') }}"><i class="fas fa-landmark position-absolute top-0 end-0 text-light p-4 fs-2"></i></a>
 <main>      
     
     <div class="text-center mb-5">    
@@ -37,9 +37,10 @@
       </a>        
     </div>
 </div><br>
+
 <div class="row text-center">
     <div class="col">
-    <p class="display-6"><i class="fas fa-hand-holding-usd"></i> So far you have saved : {{ $year_balance }} €</p>
+    <p class="display-6"><i class="fas fa-hand-holding-usd"></i> So far you have {{ $balance_result }} : {{ $year_balance }} €</p>
     </div>
   </div>
  </div>
@@ -52,13 +53,24 @@
       <h2 class="display-6">Categories</h2>
     </div>
 </div>
+   
     <div class="row">
-    <ul class="list-group list-group-flush">    
-    @foreach ($sum_year_categories as $sum_year_cat)    
-      <li class="list-group list-group-item">Total {{ $sum_year_cat->category }} = {{ $sum_year_cat->total_year_cat }} €</li>  
-    @endforeach  
-</ul>
-</div>
+
+    <ul class="list-group list-group-flush"> 
+
+    @foreach ($sum_year_categories as $sum_year_cat)   
+
+    <li class="list-group list-group-item">      
+      <a class="btn" href="{{ route('year.cat', [$sum_year_cat->category]) }}">
+      <i class="fas fa-search-dollar"></i></a>
+      Total {{ $sum_year_cat->category }} = {{ $sum_year_cat->total_year_cat }} € </li>  
+      
+      @endforeach  
+      
+    </ul>
+    
+    
+  </div>
 </div>
 
 </main>

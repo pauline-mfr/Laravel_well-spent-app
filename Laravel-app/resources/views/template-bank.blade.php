@@ -20,7 +20,7 @@
 </div>
 <div class="col">
 <!-- BTN HOME -->
-<a class="btn" href=" {{ route('homepage') }}"><i class="fas fa-home text-light fs-2"></i></a>
+<a class="btn" href=" {{ route('homepage') }}"><i class="fas fa-landmark text-light fs-2"></i></a>
 </div>
 </div>
 <main>
@@ -47,7 +47,7 @@
 
 @yield('amount-bloc')
 
-<!-- TABLE -->
+<!-- TABLE INCOME-->
 <div class="px-5">
 <table class="table table-light table-striped my-5">
     @yield('income-table')    
@@ -55,15 +55,16 @@
 </div>
 
  
- <!-- TABLE -->
+ <!-- TABLE EXPENSE-->
  <div class="px-5">
  <table class="table table-dark table-striped my-5">
    @yield('expense-table')    
   </table> 
 </div> 
  
-  
-
+  <div class="px-5">
+@yield('total')
+</div>
 
 <!-- CATEGORIES -->
 <div class="px-5">

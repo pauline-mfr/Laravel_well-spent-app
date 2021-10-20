@@ -9,7 +9,9 @@ class YearController extends Controller
 {
     public function showYear() {
 
-       
+       //test id table results
+        $datas = Expense::all();
+
         $total_year_in = Expense::where('is_income', 1)->sum('amount');        
         $total_year_ex = Expense::where('is_income', 0)->sum('amount');
         $year_balance = $total_year_in - $total_year_ex;
@@ -25,7 +27,16 @@ class YearController extends Controller
         ->orderBy('total_year_cat', 'desc')
         ->get();
 
-        return view('view-year', compact('total_year_in', 'total_year_ex', 'year_balance', 'sum_year_categories'));
+        return view('view-year', compact('total_year_in', 'total_year_ex', 'year_balance', 'sum_year_categories', 'datas'));
 
     }
+
+    public function showYearCategory($category) {   
+        $line = 1;
+        $selected_category = Expense::all()->where('category', $category);
+        $total_year_cat = Expense::all()->where('category', $category)->sum('amount');
+        return view('view-cat', compact('category', 'line', 'selected_category', 'total_year_cat'));  
+        
+    }
 }
+
