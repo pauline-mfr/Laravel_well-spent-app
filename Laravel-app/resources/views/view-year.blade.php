@@ -40,7 +40,7 @@
 
 <div class="row text-center">
     <div class="col">
-    <p class="display-6"><i class="fas fa-hand-holding-usd"></i> So far you have {{ $balance_result }} : {{ $year_balance }} €</p>
+    <p class="display-6"><i class="fas fa-hand-holding-usd"></i> So far you have {{ $balance_verb }} : {{ $year_balance }} €</p>
     </div>
   </div>
  </div>

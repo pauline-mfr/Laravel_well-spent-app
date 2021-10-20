@@ -81,7 +81,9 @@ class ExpenseController extends Controller
          $expense->amount = $request->amount; 
          if($request->has('new_category') && !empty($request->new_category)) {
             $expense->category = $request->new_category;
-        } elseif($request->has('category')) {
+        } elseif($request->has('category') && $request->category == 'Select a category') {
+            $expense->category = NULL;
+        } else {
             $expense->category = $request->category;
         }
          $expense->save(); // DB register      
