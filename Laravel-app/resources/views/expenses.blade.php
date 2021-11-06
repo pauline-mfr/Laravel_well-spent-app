@@ -5,20 +5,27 @@ Expenses
 @endsection
 
 @section('select')
-<form class="form-select" name="selected_cat">
-            <select onchange="window.location.href = this.value">
-                <option value="{{ route('expenses.index') }}" >All categories</option>
-                @foreach($categories as $category)
-      
-  <option value="{{ route('expenses.category', $category->category) }}" 
-    >
+
+<form action="{{ route('expenses.index') }}" method="GET">
+   <div class="row">
+     <div class="col-8">
+ <select class="form-select" name="selected_cat"> 
+      <option value="all_cat">All categories</option>
+    @foreach ($categories as $category)    
+       <option value="{{ $category->category }}"> {{ $category->category }} </option>        
+       @endforeach 
+      </select>   
+</div>
+      <div class="col-4">  
+    <div class="mb-3">
+    <input type="submit" value="Check" name="submit" class="btn btn-light">
+    </div>
+</div>
+</div>
+    <form>
 
 
-                      {{ $category->category }}
-                    </option>
-                @endforeach
-            </select>
-</form>
+
 @endsection
 
 @if(isset($selected))
@@ -51,13 +58,13 @@ Expenses
       <td>
       <div class="row">
 <div class="col-2">
-  <a class="btn" href="{{ route('expenses.edit', $expense->id) }}"><i class="fas fa-edit text-light"></i></a>  
+  <a class="btn" href="{{ route('expenses.edit', $expense->id) }}"><i class="fas fa-edit"></i></a>  
 </div>
 <div class="col-10">
         <form action=" {{ route('expenses.destroy', $expense->id) }} " method="post">
           @csrf
           @method('DELETE')
-          <button class="btn" type="submit"><i class="far fa-trash-alt text-light"></i></button>
+          <button class="btn" type="submit"><i class="far fa-trash-alt"></i></button>
         </form>
 </div>
 </div>
@@ -82,7 +89,7 @@ Expenses
     <div class="row">
       <ul class="list-group list-group-flush">    
     @foreach ($sum_categories as $sum_cat)    
-      <li class="list-group list-group-item">Total {{ $sum_cat->category }} = {{ $sum_cat->total_cat }} €</li>  
+      <li class="list-group list-group-item">{{ $sum_cat->category }} = {{ $sum_cat->total_cat }} €</li>  
     @endforeach  
 </ul>
 </div>

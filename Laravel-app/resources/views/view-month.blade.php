@@ -91,13 +91,13 @@
       <td>
       <div class="row">
 <div class="col-2">
-  <a class="btn" href="{{ route('expenses.edit', $expense->id) }}"><i class="fas fa-edit text-light"></i></a>  
+  <a class="btn" href="{{ route('expenses.edit', $expense->id) }}"><i class="fas fa-edit"></i></a>  
 </div>
 <div class="col-10">
         <form action=" {{ route('expenses.destroy', $expense->id) }} " method="post">
           @csrf
           @method('DELETE')
-          <button class="btn" type="submit"><i class="far fa-trash-alt text-light"></i></button>
+          <button class="btn" type="submit"><i class="far fa-trash-alt"></i></button>
         </form>
 </div>
 </div>
@@ -117,7 +117,7 @@
     <div class="row">
       <ul class="list-group list-group-flush">    
     @foreach ($sum_month_categories as $sum_month_cat)    
-      <li class="list-group list-group-item">Total {{ $sum_month_cat->category }} = {{ $sum_month_cat->total_cat }} €</li>  
+      <li class="list-group list-group-item">{{ $sum_month_cat->category }} = {{ $sum_month_cat->total_cat }} €</li>  
     @endforeach  
 </ul>
 </div>

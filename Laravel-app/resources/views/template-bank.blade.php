@@ -57,7 +57,7 @@
  
  <!-- TABLE EXPENSE-->
  <div class="px-5">
- <table class="table table-dark table-striped my-5">
+ <table class="table table-light table-striped my-5">
    @yield('expense-table')    
   </table> 
 </div> 

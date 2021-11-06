@@ -16,8 +16,17 @@ class IncomeController extends Controller
     public function index()
     {
         $line = 1;
-        $incomes = Expense::where('is_income', 1)->orderBy('date', 'asc')->get();
-        $total_in = Expense::where('is_income', 1)->sum('amount');
+        $incomes = Expense::where('is_income', 1)
+        ->whereMonth('date', date('m')) //date('m') = current month
+        ->whereYear('date', date('Y'))
+        ->orderBy('date', 'asc')
+        ->get();
+
+        $total_in = Expense::where('is_income', 1)
+        ->whereMonth('date', date('m')) //date('m') = current month
+        ->whereYear('date', date('Y'))
+        ->sum('amount');
+        
         return view('incomes', compact('incomes', 'line', 'total_in'));
     }
 

@@ -12,35 +12,62 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // DISPLAY
-        $line = 1;
-        $expenses = Expense::where('is_income', 0)->orderBy('date', 'asc')->get();
-          
+        $line = 1;         
+           
+         if(empty($request->selected_cat) || $request->selected_cat == "all_cat") {
+                
+                // All categories display
+                $expenses = Expense::where('is_income', 0)
+                ->whereMonth('date', date('m')) //date('m') = current month
+               ->whereYear('date', date('Y'))
+                ->orderBy('date', 'asc')
+                ->get(); 
 
-        //TEST SELECT CAT
-        /* $query = $chosen_cat ? Expense::where('category', $chosen_cat) : Expense::query();
-        $expenses = $query->oldest('title')->paginate(100); */
+                //total all categories
+                $total_ex = Expense::where('is_income', 0)
+                ->whereMonth('date', date('m'))
+                ->whereYear('date', date('Y'))
+                ->sum('amount');
+            } else { 
         
-        /* 
-        $query = $slug ? Category::whereSlug($slug)->firstOrFail()->films() : Film::query();
-    $films = $query->withTrashed()->oldest('title')->paginate(5);
-    */
+                // one category display
+                $expenses = Expense::where('is_income', 0)
+                ->where('category', $request->selected_cat)
+                ->whereMonth('date', date('m'))
+               ->whereYear('date', date('Y'))
+                ->orderBy('date', 'asc')
+                ->get(); 
+    
+                //total chosen category
+                $total_ex = Expense::where('is_income', 0)
+                ->where('category', $request->selected_cat)
+                ->whereMonth('date', date('m'))
+                ->whereYear('date', date('Y'))
+                ->sum('amount');
+    
+                }
+           
 
        
         $categories = Expense::select("category")
+        ->whereMonth('date', date('m'))
+        ->whereYear('date', date('Y'))
         ->groupBy("category")
         ->get();
         
         // TOTAL TAB
-        $total_ex = Expense::where('is_income', 0)->sum('amount');
+        
         
         //SUM CATEGORIES
         $sum_categories = Expense::select([
             'category',
             DB::raw('SUM(amount) AS total_cat') ])
             ->where('is_income', 0)
+            ->whereMonth('date', date('m')) 
+            ->whereYear('date', date('Y'))
             ->groupBy('category')
             ->orderBy('total_cat', 'desc')
             ->get(); 
@@ -104,7 +131,7 @@ class ExpenseController extends Controller
      */
 
      //Used to show year category
-    public function show($category)
+    public function show($id)
     {
         //
     }
@@ -148,22 +175,9 @@ class ExpenseController extends Controller
 
     public function showCat(Request $request) {
 
-        if($request->has('selected_cat'))
-         {
-             $selected_cat = $request->category;
-             return view('expenses', compact('selected'));
-            }
-        }
-     //TEST SELECT CAT
-        /* $query = $chosen_cat ? Expense::where('category', $chosen_cat) : Expense::query();
-        $expenses = $query->oldest('title')->paginate(100); */
-        
-        /* 
-        $query = $slug ? Category::whereSlug($slug)->firstOrFail()->films() : Film::query();
-    $films = $query->withTrashed()->oldest('title')->paginate(5);
-    */
 
    
 }
 
 
+}
