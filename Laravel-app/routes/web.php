@@ -34,7 +34,3 @@ Route::get('view-year', [YearController::class, 'showYear'])->name('expenses.yea
 // ROUTE VIEW CAT YEAR
 Route::get('expenses/year/{category}', [YearController::class, 'showYearCategory'])->name('year.cat');  
 
-
-// ROUTE SELECT CAT
-Route::get('expenses/view-cat/', [ExpenseController::class, 'showCat'])->name('expenses.category');
-

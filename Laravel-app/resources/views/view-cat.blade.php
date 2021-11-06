@@ -19,7 +19,7 @@ Category : {{ $category }}
       <th scope="row">{{ $line ++ }}</th>
       <td>{{ date('d-m-Y', strtotime($category_result->date)) }}</td>
       <td>{{ $category_result->title }}</td>
-      <td>{{ $category_result->amount }} €</td>
+      <td class="text-danger">{{ $category_result->amount }} €</td>
     </tr>
     @endforeach
   </tbody>  

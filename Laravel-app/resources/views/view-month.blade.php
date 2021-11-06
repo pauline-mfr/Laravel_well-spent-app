@@ -2,8 +2,27 @@
 
 @section('title')
 {{ $short_date }}<br>
+@endsection
 
+@section('select')
 
+<form action="{{ route('expenses.index') }}" method="GET">
+   <div class="row">
+     <div class="col-8">
+ <select class="form-select" name="selected_cat"> 
+      <option value="all_cat">All categories</option>
+    @foreach ($categories as $category)    
+       <option value="{{ $category->category }}"> {{ $category->category }} </option>        
+       @endforeach 
+      </select>   
+</div>
+      <div class="col-4">  
+    <div class="mb-3">
+    <input type="submit" value="Check" name="submit" class="btn btn-light">
+    </div>
+</div>
+</div>
+    <form>
 
 @endsection
 
@@ -48,7 +67,7 @@
       <th scope="row">{{ $line ++ }}</th>
       <td>{{ date('d-m-Y', strtotime($income->date)) }}</td>
       <td>{{ $income->title }}</td>
-      <td>{{ $income->amount }} €</td>
+      <td class="text-success">{{ $income->amount }} €</td>
       <td>{{ $income->category }}</td>
       <td>
         <div class="row">
@@ -86,7 +105,7 @@
       <th scope="row">{{ $line ++ }}</th>
       <td>{{ date('d-m-Y', strtotime($expense->date)) }}</td>
       <td>{{ $expense->title }}</td>
-      <td>{{ $expense->amount }} €</td>
+      <td class="text-danger">{{ $expense->amount }} €</td>
       <td>{{ $expense->category }}</td>
       <td>
       <div class="row">

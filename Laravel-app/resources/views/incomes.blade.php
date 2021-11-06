@@ -25,7 +25,7 @@ Incomes
       <th scope="row">{{ $line ++ }}</th>
       <td>{{ date('d-m-Y', strtotime($income->date)) }}</td>
       <td>{{ $income->title }}</td>
-      <td>{{ $income->amount }} €</td>
+      <td class="text-success">{{ $income->amount }} €</td>
       <td>{{ $income->category }}</td>
       <td>
       <div class="row">

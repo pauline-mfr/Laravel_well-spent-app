@@ -24,13 +24,9 @@ Expenses
 </div>
     <form>
 
-
-
 @endsection
 
-@if(isset($selected))
-<p>{{ $selected }}</p>
-@endif
+
 
 @section('btn-add')
 <a class="btn btn-outline-primary btn-sm fs-3" href="{{ route('expenses.create') }}">+</a>
@@ -53,7 +49,7 @@ Expenses
       <th scope="row">{{ $line ++ }}</th>
       <td>{{ date('d-m-Y', strtotime($expense->date)) }}</td>
       <td>{{ $expense->title }}</td>
-      <td>{{ $expense->amount }} €</td>
+      <td class="text-danger">{{ $expense->amount }} €</td>
       <td>{{ $expense->category }}</td>
       <td>
       <div class="row">

@@ -48,16 +48,18 @@
 @yield('amount-bloc')
 
 <!-- TABLE INCOME-->
-<div class="px-5">
-<table class="table table-light table-striped my-5">
+<div class="px-5 my-5">
+  <h4>Incomes</h4>
+<table class="table table-light table-striped">
     @yield('income-table')    
 </table>  
 </div>
 
  
  <!-- TABLE EXPENSE-->
- <div class="px-5">
- <table class="table table-light table-striped my-5">
+ <div class="px-5 my-5">
+ <h4>Expenses</h4>
+ <table class="table table-light table-striped">
    @yield('expense-table')    
   </table> 
 </div> 
